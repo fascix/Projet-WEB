@@ -1,6 +1,5 @@
 body {
 	color: white;
-
 }
 
 .Titre {
@@ -8,7 +7,7 @@ body {
 	text-decoration: underline;
 }
 
-.Like, .Dislike, .Bibliotheque {
+.Like, .Accueil, .Bibliotheque {
 	color: white;
 	text-decoration: none;
 }
@@ -17,8 +16,8 @@ body {
 	color: green;
 }
 
-.Dislike:hover {
-	color: red;
+.Accueil:hover {
+	color: rgba(0,90,167,1);
 }
 
 .Bibliotheque:hover {
@@ -37,8 +36,8 @@ nav
 body {
     height: 100vh; /* Assure que le gradient couvre toute la hauteur de l'écran */
     margin: 0; /* Supprime les marges par défaut */
-    background: linear-gradient(180deg, rgba(0,90,167,1) 23%, rgba(255,253,228,1) 75%);
-    background-repeat: no-repeat;
+    background: rgb(51,51,51);
+	background: linear-gradient(0deg, rgba(51,51,51,1) 23%, rgba(125,23,23,1) 100%);
     background-attachment: fixed; /* Fixe le fond pour qu'il ne bouge pas avec le scroll */
     background-size: cover; /* Couvre toute la page */
 }

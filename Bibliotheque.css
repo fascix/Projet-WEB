@@ -1,0 +1,43 @@
+body {
+    color: white;
+}
+
+.Titre {
+    text-align: center;
+    text-decoration: underline;
+}
+
+.Like, .Dislike, .Accueil {
+    color: white;
+    text-decoration: none;
+}
+
+.Like:hover {
+    color: green;
+}
+
+.Dislike:hover {
+    color: red;
+}
+
+.Accueil:hover {
+    color: rgba(0,90,167,1);
+}
+
+nav
+{
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    font-size: 20px;
+    align-items: center;
+}
+
+body {
+    height: 100vh; /* Assure que le gradient couvre toute la hauteur de l'écran */
+    margin: 0; /* Supprime les marges par défaut */
+    background: rgb(189,195,199);
+    background: linear-gradient(0deg, rgba(189,195,199,1) 13%, rgba(33,44,54,1) 100%);
+    background-attachment: fixed; /* Fixe le fond pour qu'il ne bouge pas avec le scroll */
+    background-size: cover; /* Couvre toute la page */
+}
