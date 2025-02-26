@@ -41,3 +41,30 @@ body {
     background-attachment: fixed; /* Fixe le fond pour qu'il ne bouge pas avec le scroll */
     background-size: cover; /* Couvre toute la page */
 }
+
+/* Bouton jour/nuit */
+#themeToggle {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    transition: transform 0.3s ease;
+}
+
+#themeToggle:hover {
+    transform: scale(1.1);
+}
+
+/* Icône du bouton */
+#themeIcon {
+    width: 35px;
+    height: 35px;
+}
+
+/* Mode sombre */
+.dark-mode {
+    background: linear-gradient(135deg, #10171e, #273649)
+}
