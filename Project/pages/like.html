@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Titre Like</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/like.css">
+</head>
+<body>
+    <header>
+        <button id="settingsButton">
+            <img id="settingsIcon" src="../images/settings.png" alt="Paramètres">
+        </button>
+        <h1 class="Titre">Titres Likes :</h1>
+        <nav>
+            <a href="Accueil.html" class="Accueil">Accueil</a>
+            <a href="Bibliotheque.html" class="Bibliotheque">Bibliothèque</a>
+            <a href="Dislike.html" class="Dislike">Titres Dislikes</a>
+        </nav>
+        <button id="themeToggle">
+            <img id="themeIcon" src="../images/soleil.png" alt="Soleil">
+        </button>
+    </header>
+    <main>
+        <div class="filters">
+            <button class="filter-button active">Tous</button>
+            <button class="filter-button">Pop</button>
+            <button class="filter-button">Rock</button>
+            <button class="filter-button">Hip-Hop</button>
+            <button class="filter-button">Électronique</button>
+            <button class="filter-button">Jazz</button>
+            <button class="filter-button">Classique</button>
+            <button class="filter-button">World</button>
+            <button class="filter-button">Alternative</button>
+        </div>
+    </main>
+    <footer></footer>
+
+    <!-- Fenêtre modale -->
+    <div id="modal" class="modal">
+        <div class="modal-header">Paramètres</div>
+        <div class="modal-buttons">
+            <button class="modal-button spotify">Connecter Spotify</button>
+            <button class="modal-button deezer">Connecter Deezer</button>
+        </div>
+        <button id="closeModalButton" class="modal-button">Fermer</button>
+    </div>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>
