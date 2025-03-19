@@ -165,3 +165,112 @@ nav a:hover {
 .filter-button:hover {
     background: #1c163a;
 }
+
+
+
+
+
+
+/* Responsive : */
+
+/* Extra large (1200px et plus) */
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  nav a {
+    font-size: 20px;
+  }
+
+  .modal {
+    width: 500px;
+  }
+}
+
+/* Large (992px) */
+@media (min-width: 992px) {
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  nav a {
+    font-size: 18px;
+  }
+
+  .modal {
+    width: 400px;
+  }
+}
+
+/* Medium (768px) */
+@media (min-width: 768px) and (max-width: 991px) {
+  nav {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  nav a {
+    font-size: 16px;
+  }
+
+  .modal {
+    width: 80%;
+  }
+}
+
+/* Small (576px) */
+@media (min-width: 576px) and (max-width: 767px) {
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  nav a {
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
+    margin-bottom: 15px;
+    padding: 10px 0;
+  }
+
+  .modal {
+    width: 90%;
+  }
+
+  .Titre {
+    font-size: 1.75em;
+  }
+}
+
+/* Extra small (moins de 576px) */
+@media (max-width: 575px) {
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+  }
+
+  nav a {
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: 10px;
+    padding: 10px 0;
+  }
+
+  .modal {
+    width: 95%;
+  }
+
+  .Titre {
+    font-size: 1.5em;
+  }
+
+  .modal-header {
+    font-size: 18px;
+  }
+}
+
