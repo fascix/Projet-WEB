@@ -3,37 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Discovery Website</title>
+    <title>OneSong</title>
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/accueil.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="../css/settings.css">
 </head>
 <body>
     <header>
         <button id="settingsButton">
             <img id="settingsIcon" src="../images/settings.png" alt="Paramètres">
         </button>
-        <h1 class="Titre">Discover Music :</h1>
+        <h1 class="Titre">OneSong :</h1>
         <nav>
-            <a href="Like.html" class="Like">Titres aimés</a>
-            <a href="Bibliotheque.html" class="Bibliotheque">Bibliothèque</a>
-            <a href="Dislike.html" class="Dislike">Titres non-aimés</a>
+            <button id="menu-toggle" aria-label="Toggle navigation">☰ Menu</button>
+            <div id="nav-links" class="nav-links">
+                <a href="Like.html" class="Like">Titres aimés</a>
+                <a href="Bibliotheque.html" class="Bibliotheque">Bibliothèque</a>
+                <a href="Dislike.html" class="Dislike">Titres non-aimés</a>
+            </div>
         </nav>
         <button id="themeToggle">
             <img id="themeIcon" src="../images/soleil.png" alt="Soleil">
         </button>
     </header>
-    <main></main>
+    <main>
+        <div class="music-card">
+            <img src="album_cover" src="">
+            <h2 id="Titre_M">Titre de la musique</h2>
+            <p id="nom_artiste">Nom de l'artiste</p>
+        </div>
+    </main>
     <footer></footer>
 
     <!-- Fenêtre modale -->
     <div id="modal" class="modal">
+        <button id="closeModalButton" class="closeModalButton">×</button>
         <div class="modal-header">Paramètres</div>
         <div class="modal-buttons">
             <button class="modal-button spotify">Connecter Spotify</button>
             <button class="modal-button deezer">Connecter Deezer</button>
         </div>
-        <button id="closeModalButton" class="modal-button">Fermer</button>
     </div>
+
 
     <script src="../js/script.js"></script>
 </body>
