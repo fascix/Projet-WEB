@@ -1,6 +1,12 @@
+@font-face {
+	font-family: 'SnellRoundhand';
+	src: url('../fonts/SnellRoundhand.ttc');
+}
+
 body {
 color: white;
-height: 100vh;
+min-height: 100vh;
+height: auto;
 margin: 0;
 background-attachment: fixed;
 background-size: cover;
@@ -8,7 +14,8 @@ background-size: cover;
 
 .Titre {
 text-align: center;
-text-decoration: underline;
+font-family: 'SnellRoundhand';
+font-size: 55px;
 }
 
 nav {
@@ -48,7 +55,6 @@ text-decoration: none;
 
 nav a {
 position: relative;
-background: #16122d;
 color: white; /* Couleur de base du texte */
 padding: 10px 20px;
 font-size: 18px;
@@ -149,7 +155,8 @@ background: #1c163a;
 }
 
 .nav-links {
-    margin: 20px;
+    margin-left: 20px;
+    margin-right: ;
     
 }
 
@@ -192,3 +199,7 @@ margin-top: auto;
 padding: 10px;
 }
 
+
+#Logo {
+	width: 10%;
+}
