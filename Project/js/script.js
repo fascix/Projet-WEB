@@ -53,3 +53,50 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Swiper : 
+
+document.addEventListener('DOMContentLoaded', function () {
+            var swiper = new Swiper('.swiper-container', {
+                slidesPerView: 9,
+                spaceBetween: 10,
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                breakpoints: {
+                1200: { // Extra large (1200px et plus)
+                    slidesPerView: 9,
+                    spaceBetween: 10,
+                },
+                992: { // Large (992px et plus)
+                    slidesPerView: 7,
+                    spaceBetween: 25,
+                },
+                768: { // Medium (768px et plus)
+                    slidesPerView: 5,
+                    spaceBetween: 15,
+                },
+                576: { // Small (576px et plus)
+                    slidesPerView: 4,
+                    spaceBetween: 10,
+                },
+                0: { // Extra small (moins de 576px)
+                    slidesPerView: 3,
+                    spaceBetween: 5,
+                }
+            }
+            });
+        });

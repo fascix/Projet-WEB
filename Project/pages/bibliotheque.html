@@ -8,33 +8,65 @@
     <link rel="stylesheet" href="../css/bibliotheque.css">
     <link rel="stylesheet" href="../css/responsive.css">
     <link rel="stylesheet" href="../css/settings.css">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 </head>
 <body>
     <header>
         <button id="settingsButton">
             <img id="settingsIcon" src="../images/settings.png" alt="Paramètres">
         </button>
-        <h1 class="Titre">Bibliothèque:</h1>
+        <div class="Logo-Titre-container">
+            <img id="Logo" src="../images/Logo.png">
+            <h1 class="Titre">Bibliothèque:</h1>
+        </div>
+
         <nav>
-            <a href="Like.html" class="Like">Titres aimés</a>
-            <a href="Accueil.html" class="Accueil">Accueil</a>
-            <a href="Dislike.html" class="Dislike">Titres non-aimés</a>
+            <button id="menu-toggle" aria-label="Toggle navigation">☰ Menu</button>
+            <div id="nav-links" class="nav-links">
+                <a href="Like.html" class="Like">Titres aimés</a>
+                <a href="Accueil.html" class="Accueil">Accueil</a>
+                <a href="Dislike.html" class="Dislike">Titres non-aimés</a>
+            </div>
         </nav>
         <button id="themeToggle">
             <img id="themeIcon" src="../images/soleil.png" alt="Soleil">
         </button>
     </header>
     <main>
-        <div class="filters">
-            <button class="filter-button active">Tous</button>
-            <button class="filter-button">Pop</button>
-            <button class="filter-button">Rock</button>
-            <button class="filter-button">Hip-Hop</button>
-            <button class="filter-button">Électronique</button>
-            <button class="filter-button">Jazz</button>
-            <button class="filter-button">Classique</button>
-            <button class="filter-button">World</button>
-            <button class="filter-button">Alternative</button>
+        <div class="swiper-container">
+            <div class="swiper-wrapper filters">
+                <div class="swiper-slide">
+                    <button class="filter-button active">Tous</button>
+                </div>
+                <div class="swiper-slide">
+                    <button class="filter-button">Pop</button>
+                </div>
+                <div class="swiper-slide">
+                    <button class="filter-button">Rock</button>
+                </div>
+                <div class="swiper-slide">
+                    <button class="filter-button">Hip-Hop</button>
+                </div>
+                <div class="swiper-slide">
+                    <button class="filter-button">Électronique</button>
+                </div>
+                <div class="swiper-slide">
+                    <button class="filter-button">Jazz</button>
+                </div>
+                <div class="swiper-slide">
+                    <button class="filter-button">Classique</button>
+                </div>
+                <div class="swiper-slide">
+                    <button class="filter-button">World</button>
+                </div>
+                <div class="swiper-slide">
+                    <button class="filter-button">Alternative</button>
+                </div>
+            </div>
+            <!-- Ajouter les boutons de navigation -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
         </div>
     </main>
     <footer></footer>
@@ -49,5 +81,7 @@
         <button id="closeModalButton" class="modal-button">Fermer</button>
     </div>
     <script src="../js/script.js"></script>
+    <!-- Swiper JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 </body>
 </html>

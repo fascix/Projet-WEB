@@ -3,6 +3,16 @@
 	src: url('../fonts/SnellRoundhand.ttc');
 }
 
+
+.Logo-Titre-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	position: relative;
+	top: 10px;
+}
+
 body {
 color: white;
 min-height: 100vh;
@@ -13,9 +23,9 @@ background-size: cover;
 }
 
 .Titre {
-text-align: center;
-font-family: 'SnellRoundhand';
-font-size: 55px;
+	text-align: center;
+	font-family: 'SnellRoundhand';
+	font-size: 55px;
 }
 
 nav {
@@ -118,11 +128,14 @@ height: 35px;
 
 
 /* Styles pour le filtre par genre */
-.filters {
-display: flex;
-justify-content: center;
-gap: 10px;
-margin: 20px 0;
+.swiper-container {
+    width: 100%;
+    padding: 20px 0;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
 }
 
 .filter-button {
@@ -194,12 +207,13 @@ flex: 1;
 
 #nom_artiste {
 font-size: 1em;
-color: #555;
+color: black;
 margin-top: auto;
 padding: 10px;
 }
 
 
 #Logo {
-	width: 10%;
+	height: 80px;
+	width: auto;
 }

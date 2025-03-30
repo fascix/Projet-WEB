@@ -15,3 +15,13 @@ nav a:hover {
     background: #121020;
     color: red;
 }
+
+.dark-mode .filter-button {
+    background: #121020;
+    color: red;
+}
+
+.filter-button:hover {
+    background: #121020;
+    color: red;
+}
