@@ -1,5 +1,6 @@
 /* Styles pour la fenêtre modale */
-.modal {
+.modal 
+{
     display: none;
     position: fixed;
     top: 50%;
@@ -13,49 +14,48 @@
     width: 300px;
 }
 
-.modal.show {
-display: block;
+.modal.show 
+{
+    display: block;
 }
 
-.modal-header {
-font-size: 24px;
-margin-bottom: 20px;
-text-align: center;
+.modal-header 
+{
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
 }
 
-.modal-buttons {
-display: flex;
-flex-direction: column;
-gap: 10px;
+.modal-buttons 
+{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
-.modal-button {
-background: #1c163a;
-color: white;
-border: none;
-border-radius: 10px;
-padding: 15px;
-cursor: pointer;
-transition: background 0.3s ease;
+.modal-button 
+{
+    background: #1c163a;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+    cursor: pointer;
+    transition: background 0.3s ease;
 }
 
-.modal-button.spotify {
-background: green;
+.modal-button.spotify 
+{
+    background: green;
 }
 
-.modal-button.spotify:hover {
-background: darkgreen;
+.modal-button.spotify:hover 
+{
+    background: darkgreen;
 }
 
-.modal-button.deezer {
-background: purple;
-}
-
-.modal-button.deezer:hover {
-background: darkviolet;
-}
-
-.closeModalButton {
+.closeModalButton 
+{
     position: absolute;
     top: 10px;
     right: 10px; /* Positionne le bouton en haut à droite */
@@ -72,6 +72,7 @@ background: darkviolet;
     transition: background 0.3s ease;
 }
 
-.closeModalButton:hover {
+.closeModalButton:hover 
+{
     background: #ff3333; /* Couleur de fond au survol */
 }

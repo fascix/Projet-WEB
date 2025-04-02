@@ -1,27 +1,33 @@
-body {
+body 
+{
     background: rgb(189,195,199);
     background: linear-gradient(180deg, rgba(189,195,199,1) 30%, rgba(33,44,54,1) 100%);
 }
 
-nav a:hover {
+nav a:hover 
+{
     color: grey; /* Couleur dominante de la page bibliothèque */
 }
 
-.dark-mode {
+.dark-mode 
+{
     background: linear-gradient(180deg, rgba(44, 62, 80, 1) 0%, rgba(10, 15, 19, 1) 100%);
 }
 
-.dark-mode nav a {
+.dark-mode nav a 
+{
     background: #121020;
     color: grey;
 }
 
-.dark-mode .filter-button {
+.dark-mode .filter-button 
+{
     background: #121020;
     color: grey;
 }
 
-.filter-button:hover {
+.filter-button:hover 
+{
     background: #121020;
     color: grey;
 } 
