@@ -50,7 +50,7 @@ async function getSpotifyToken() {
         return null;
     }
 }
-async function getAvailableGenres() {
+async function getAvailableArtist() {
     const token = await getSpotifyToken();
     if (!token) return;
 
@@ -63,7 +63,7 @@ async function getAvailableGenres() {
         });
 
         if (response.status === 401) {
-            throw new Error("❌ Token invalide ou expiré !");
+            throw new Error("Token invalide ou expiré !");
         }
 
         if (!response.ok) {
@@ -71,14 +71,44 @@ async function getAvailableGenres() {
         }
 
         const data = await response.json();
-        console.log("✅ Genres disponibles:", data);
+        console.log("Genres disponibles:", data);
         return data;
 
     } catch (error) {
-        console.error("❌ Erreur lors de la récupération des genres:", error.message);
+        console.error("Erreur lors de la récupération des genres:", error.message);
     }
 }
 
 // Exécuter la requête
-getAvailableGenres();
+getAvailableArtist();
 
+//
+
+document.addEventListener("DOMContentLoaded", async (e) => {
+    const album = document.getElementById("album");
+    const nomArtiste = document.getElementById("nom_artiste");
+
+    if (!album) {
+        console.error("Élément #album introuvable dans le DOM.");
+        return;
+    }
+
+    try {
+        const token = await getSpotifyToken();
+        if (token) {
+            console.log("Token Spotify récupéré avec succès !");
+            const artistData = await getAvailableArtist();
+            console.log("Données de l'artiste :", artistData);
+            const albumcover = artistData.images[2].url;
+            if (artistData.images && artistData.images.length > 0) {
+                album.src = artistData.images[0].url;
+            }
+            if (artistData.name) {
+                nomArtiste.textContent = artistData.name;
+            }
+
+        }
+    } catch (error) {
+        console.error("Erreur lors de la récupération des données Spotify:", error.message);
+    }
+});
