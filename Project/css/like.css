@@ -1,32 +1,26 @@
-body 
-{
+body {
     background: linear-gradient(0deg, rgba(34,187,87,1) 0%, rgba(144,248,183,1) 100%);
 }
 
-nav a:hover 
-{
+nav a:hover {
     color: green; /* Couleur dominante de la page like */
 }
 
-.dark-mode 
-{
+.dark-mode {
     background: linear-gradient(180deg, rgba(29, 185, 84, 1) 0%, rgba(26, 71, 42, 1) 100%);
 }
 
-.dark-mode nav a 
-{
+.dark-mode nav a {
     background: #121020;
     color: green;
 }
 
-.dark-mode .filter-button 
-{
+.dark-mode .filter-button {
     background: #121020;
     color: green;
 }
 
-.filter-button:hover
-{
+.filter-button:hover{
     background: #121020;
     color: green;
 }

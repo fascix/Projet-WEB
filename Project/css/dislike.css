@@ -1,33 +1,27 @@
-body 
-{
+body {
     background: rgb(51,51,51);
     background: linear-gradient(0deg, rgba(134,1,1,1) 25%, rgba(240,10,10,1) 57%);
 }
 
-nav a:hover 
-{
+nav a:hover {
     color: red; /* Couleur dominante de la page dislike */
 }
 
-.dark-mode 
-{
+.dark-mode {
     background: linear-gradient(0deg, rgba(53,50,50,1) 0%, rgba(114,33,29,1) 100%);
 }
 
-.dark-mode nav a 
-{
+.dark-mode nav a {
     background: #121020;
     color: red;
 }
 
-.dark-mode .filter-button 
-{
+.dark-mode .filter-button {
     background: #121020;
     color: red;
 }
 
-.filter-button:hover 
-{
+.filter-button:hover {
     background: #121020;
     color: red;
 }

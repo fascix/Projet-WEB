@@ -1,22 +1,59 @@
-body 
-{
+body {
     background: linear-gradient(180deg, rgba(0,90,167,1) 23%, rgba(255,253,228,1) 75%);
     background-size: cover;
 }
 
-nav a:hover 
-{
+nav a:hover {
     color: rgba(0,90,167,1); /* Couleur dominante de la page d'accueil */
 }
 
-.dark-mode 
-{
+.dark-mode {
     background: linear-gradient(180deg, rgba(26, 26, 26, 1) 0%, rgba(45, 27, 105, 1) 100%);
 }
 
-.dark-mode nav a 
-{
+.dark-mode nav a {
     background: #121020;
     color: #1976d2;
 }
 
+.swiper-wrapper{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.artiste-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 300px;
+    margin: auto;
+}
+
+.image-container {
+    width: 300px;
+    height: 300px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    margin: 0 auto;
+}
+
+
+#album {
+    width: 100%;
+    max-width: 300px;
+    max-height: 300px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+#nom_artiste, #Titre_M {
+    text-align: center;
+    color: #111;
+    font-weight: bold;
+    background: white;
+    padding: 5px 10px;
+    font-size: 125%;
+}

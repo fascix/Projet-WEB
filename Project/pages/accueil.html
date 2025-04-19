@@ -32,10 +32,51 @@
         </button>
     </header>
     <main>
+
+
+        <div class="swiper-container">
+            <div class="swiper-wrapper filters">
+                <div class="swiper-slide-Pop">
+                    <button class="filter-button">Pop</button>
+                </div>
+                <div class="swiper-slide-Rock">
+                    <button class="filter-button">Rock</button>
+                </div>
+                <div class="swiper-slide-Hip-Hop">
+                    <button class="filter-button">Hip-Hop</button>
+                </div>
+                <div class="swiper-slide-Electronique">
+                    <button class="filter-button">Électronique</button>
+                </div>
+                <div class="swiper-slide-Jazz">
+                    <button class="filter-button">Jazz</button>
+                </div>
+                <div class="swiper-slide-Kpop">
+                    <button class="filter-button">K-pop</button>
+                </div>
+                <div class="swiper-slide-Country">
+                    <button class="filter-button">Country</button>
+                </div>
+                <div class="swiper-slide-Soul">
+                    <button class="filter-button">Soul</button>
+                </div>
+                <div class="swiper-slide-Blues">
+                    <button class="filter-button">Blues</button>
+                </div>
+            </div>
+            <!-- Ajouter les boutons de navigation -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+
+
+
         <div class="music-card">
-            <img id = 'album' src="album_cover">
-            <h2 id="Titre_M">Titre de la musique</h2>
+            <div class="image-container">
+                <img id="album" alt="album_cover">
+            </div>
             <p id="nom_artiste">Nom de l'artiste</p>
+            <h2 id="Titre_M">Titre de la musique</h2>
         </div>
     </main>
     <footer></footer>
@@ -46,10 +87,11 @@
         <div class="modal-header">Paramètres</div>
         <div class="modal-buttons">
             <button class="modal-button spotify">Connecter Spotify</button>
+            <button class="modal-button deezer">Connecter Deezer</button>
         </div>
     </div>
 
-
     <script src="../js/script.js"></script>
+    <script src="../js/api.js"></script>
 </body>
 </html>

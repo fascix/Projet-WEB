@@ -12,7 +12,7 @@ button.addEventListener("click", () => {
 
     if (isDarkMode) {
         body.classList.add("dark-mode");
-        icon.src = "../images/lune_b.png"; // Icône lune locale
+        icon.src = "../images/lune.png"; // Icône lune locale
     } else {
         body.classList.remove("dark-mode");
         icon.src = "../images/soleil.png"; // Icône soleil locale
@@ -54,6 +54,18 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 // Swiper : 
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -88,3 +100,4 @@ document.addEventListener('DOMContentLoaded', function () {
             }
             });
         });
+
