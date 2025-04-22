@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="../css/accueil.css">
     <link rel="stylesheet" href="../css/responsive.css">
     <link rel="stylesheet" href="../css/settings.css">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 </head>
 <body>
     <header>
@@ -32,35 +34,33 @@
         </button>
     </header>
     <main>
-
-
         <div class="swiper-container">
-            <div class="swiper-wrapper filters">
-                <div class="swiper-slide-Pop">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide" data-genre="pop">
                     <button class="filter-button">Pop</button>
                 </div>
-                <div class="swiper-slide-Rock">
+                <div class="swiper-slide" data-genre="rock">
                     <button class="filter-button">Rock</button>
                 </div>
-                <div class="swiper-slide-Hip-Hop">
+                <div class="swiper-slide" data-genre="hiphop">
                     <button class="filter-button">Hip-Hop</button>
                 </div>
-                <div class="swiper-slide-Electronique">
+                <div class="swiper-slide" data-genre="electronic">
                     <button class="filter-button">Électronique</button>
                 </div>
-                <div class="swiper-slide-Jazz">
+                <div class="swiper-slide" data-genre="jazz">
                     <button class="filter-button">Jazz</button>
                 </div>
-                <div class="swiper-slide-Kpop">
+                <div class="swiper-slide" data-genre="kpop">
                     <button class="filter-button">K-pop</button>
                 </div>
-                <div class="swiper-slide-Country">
+                <div class="swiper-slide" data-genre="country">
                     <button class="filter-button">Country</button>
                 </div>
-                <div class="swiper-slide-Soul">
+                <div class="swiper-slide" data-genre="soul">
                     <button class="filter-button">Soul</button>
                 </div>
-                <div class="swiper-slide-Blues">
+                <div class="swiper-slide" data-genre="blues">
                     <button class="filter-button">Blues</button>
                 </div>
             </div>
@@ -69,8 +69,6 @@
             <div class="swiper-button-prev"></div>
         </div>
 
-
-
         <div class="music-card">
             <div class="image-container">
                 <img id="album" alt="album_cover">
@@ -78,6 +76,7 @@
             <p id="nom_artiste">Nom de l'artiste</p>
             <h2 id="Titre_M">Titre de la musique</h2>
         </div>
+        
     </main>
     <footer></footer>
 
@@ -93,5 +92,7 @@
 
     <script src="../js/script.js"></script>
     <script src="../js/api.js"></script>
+    <!-- Swiper JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 </body>
 </html>
