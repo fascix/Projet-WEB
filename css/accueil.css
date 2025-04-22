@@ -1,0 +1,22 @@
+body 
+{
+    background: linear-gradient(180deg, rgba(0,90,167,1) 23%, rgba(255,253,228,1) 75%);
+    background-size: cover;
+}
+
+nav a:hover 
+{
+    color: rgba(0,90,167,1); /* Couleur dominante de la page d'accueil */
+}
+
+.dark-mode 
+{
+    background: linear-gradient(180deg, rgba(26, 26, 26, 1) 0%, rgba(45, 27, 105, 1) 100%);
+}
+
+.dark-mode nav a 
+{
+    background: #121020;
+    color: #1976d2;
+}
+
