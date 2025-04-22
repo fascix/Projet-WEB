@@ -12,6 +12,5 @@ Onesong est une plateforme musicale interactive permettant aux utilisateurs de d
 ## Technologies utilisées
 
 - **Frontend** : HTML, CSS, JavaScript
-- **Bibliothèques** : Swiper.js (pour la gestion des filtres par genre et la présentation des albums), éventuellement React ou Vue.js pour une meilleure interactivité
-- **Backend (optionnel)** : Node.js, Express, MongoDB ou MySQL pour la gestion des données utilisateurs et des informations musicales
+- **Bibliothèques** : Swiper.js (pour la gestion des filtres par genre et la présentation des albums)
 
