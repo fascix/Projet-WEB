@@ -5,8 +5,17 @@ const album = document.getElementById("album");
 const nomArtiste = document.getElementById("nom_artiste");
 const titreMusique = document.getElementById("Titre_M");
 
-// Création des tableaux qui nous serviront à représenter les genres de musiques
+
 const genres = {
+    Tous: ["Linkin Park", "Queen", "Nirvana", "Sum 41", "AC/DC", 
+             "Damso", "PNL", "PLK", "Travis Scott", "Kendrick Lamar", 
+             "Bruno Mars", "Taio Cruz", "Katy Perry", "The Weeknd", "Magic System", 
+             "Daft Punk", "DJ Snake", "David Guetta", "Skrillex", "Calvin Harris", 
+             "Miles Davis", "John Coltrane", "Duke Ellington", "Ella Fitzgerald", "Louis Armstrong", 
+             "BTS", "BLACKPINK", "EXO", "TWICE", "Stray Kids", 
+             "Johnny Cash", "Dolly Parton", "Luke Bryan", "Carrie Underwood", "Blake Shelton", 
+             "Aretha Franklin", "Marvin Gaye", "Otis Redding", "Etta James", "Al Green", 
+             "B.B. King", "Muddy Waters", "Robert Johnson", "Howlin' Wolf", "John Lee Hooker"],
     rock: ["Linkin Park", "Queen", "Nirvana", "Sum 41", "AC/DC"],
     hiphop: ["Damso", "PNL", "PLK", "Travis Scott", "Kendrick Lamar"],
     pop: ["Bruno Mars", "Taio Cruz", "Katy Perry", "The Weeknd", "Magic System"],
@@ -15,8 +24,14 @@ const genres = {
     kpop: ["BTS", "BLACKPINK", "EXO", "TWICE", "Stray Kids"],
     country: ["Johnny Cash", "Dolly Parton", "Luke Bryan", "Carrie Underwood", "Blake Shelton"],
     soul: ["Aretha Franklin", "Marvin Gaye", "Otis Redding", "Etta James", "Al Green"],
-    blues: ["B.B. King", "Muddy Waters", "Robert Johnson", "Howlin' Wolf", "John Lee Hooker"]
+    blues: ["B.B. King", "Muddy Waters", "Robert Johnson", "Howlin' Wolf", "John Lee Hooker"],
+    classique: ["Mozart", "Beethoven", "Chopin", "Bach", "Vivaldi"], 
+    world: ["Angélique Kidjo", "Youssou N'Dour", "Fela Kuti", "Caifanes", "Manu Dibango"],
+    alternative: ["Radiohead", "The Strokes", "Arcade Fire", "The White Stripes", "Nirvana"]
 };
+
+
+
 
 // Récupérer Token valable
 async function getSpotifyToken() {
@@ -118,6 +133,14 @@ async function afficherArtisteParGenre(genre) {
         titreMusique.textContent = "Pas de musique trouvée";
     }
 }
+
+// Choisir un genre aléatoire au chargement de la page
+window.addEventListener('DOMContentLoaded', () => {
+    const genreKeys = Object.keys(genres);
+    const randomIndex = Math.floor(Math.random() * genreKeys.length);
+    const randomGenre = genreKeys[randomIndex];
+    afficherArtisteParGenre(randomGenre);
+});
 
 // Événements au clic sur les boutons de genre
 document.querySelectorAll('.swiper-slide').forEach(slide => {
