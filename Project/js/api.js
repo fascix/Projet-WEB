@@ -149,3 +149,50 @@ document.querySelectorAll('.swiper-slide').forEach(slide => {
         afficherArtisteParGenre(genre);
     });
 });
+
+// Fonction pour rediriger vers la page Spotify du morceau
+function redirectToSpotify(trackId) {
+    if (trackId) {
+        const url = `https://open.spotify.com/track/${trackId}`;
+        window.open(url, '_blank'); // ouvre dans un nouvel onglet
+    }
+}
+
+let currentTrackId = null; // Pour stocker l'ID du morceau courant
+
+// Mettre à jour la fonction afficherArtisteParGenre pour récupérer l'ID du morceau
+async function afficherArtisteParGenre(genre) {
+    const artiste = getRandomArtist(genre);
+    if (!artiste) {
+        console.error("Aucun artiste trouvé pour le genre :", genre);
+        return;
+    }
+
+    const artisteDataGlobal = await getInfoArtiste(artiste);
+    if (!artisteDataGlobal || !artisteDataGlobal.artists || artisteDataGlobal.artists.items.length === 0) {
+        console.error("Aucune donnée récupérée pour l'artiste :", artiste);
+        return;
+    }
+
+    const artisteData = artisteDataGlobal.artists.items[0];
+    if (artisteData.images && artisteData.images.length > 0) {
+        album.src = artisteData.images[0].url;
+    }
+    nomArtiste.textContent = artisteData.name;
+
+    const track = await getRandomMusic(artisteData.id);
+    if (track) {
+        titreMusique.textContent = `${track.name}`;
+        currentTrackId = track.id; // Stocke l'ID pour redirection
+    } else {
+        titreMusique.textContent = "Pas de musique trouvée";
+        currentTrackId = null;
+    }
+}
+
+// Ajouter un événement au clic sur la carte pour rediriger vers Spotify
+[album, nomArtiste, titreMusique].forEach(el => {
+    el.addEventListener('click', () => {
+        redirectToSpotify(currentTrackId);
+    });
+});
