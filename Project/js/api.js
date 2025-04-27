@@ -85,6 +85,8 @@ async function getInfoArtiste(artiste) {
         return data;
     } catch (error) {
         console.error("Erreur lors de la récupération de l'artiste:", error.message);
+        nomArtiste.textContent="Oopsi une erreur est arrivée";
+        titreMusique.textContent="Erreur lors de récupération de l'artiste";
     }
 }
 
@@ -102,37 +104,12 @@ async function getRandomMusic(artistId) {
         return data.tracks[randomIndex];
     } catch (error) {
         console.error("Erreur lors de la récupération des musiques:", error.message);
+        nomArtiste.textContent="Oopsi une erreur est arrivée";
+        titreMusique.textContent="Erreur lors de récupération de la musique";
         return null;
     }
 }
 
-// Fonction globale pour afficher un artiste et sa musique aléatoire par genre
-async function afficherArtisteParGenre(genre) {
-    const artiste = getRandomArtist(genre);
-    if (!artiste) {
-        console.error("Aucun artiste trouvé pour le genre :", genre);
-        return;
-    }
-
-    const artisteDataGlobal = await getInfoArtiste(artiste);
-    if (!artisteDataGlobal || !artisteDataGlobal.artists || artisteDataGlobal.artists.items.length === 0) {
-        console.error("Aucune donnée récupérée pour l'artiste :", artiste);
-        return;
-    }
-
-    const artisteData = artisteDataGlobal.artists.items[0];
-    if (artisteData.images && artisteData.images.length > 0) {
-        album.src = artisteData.images[0].url;
-    }
-    nomArtiste.textContent = artisteData.name;
-
-    const track = await getRandomMusic(artisteData.id);
-    if (track) {
-        titreMusique.textContent = `${track.name}`;
-    } else {
-        titreMusique.textContent = "Pas de musique trouvée";
-    }
-}
 
 // Choisir un genre aléatoire au chargement de la page
 window.addEventListener('DOMContentLoaded', () => {
@@ -165,12 +142,16 @@ async function afficherArtisteParGenre(genre) {
     const artiste = getRandomArtist(genre);
     if (!artiste) {
         console.error("Aucun artiste trouvé pour le genre :", genre);
+        titreMusique.textContent="Oopsi une erreur est arrivée";
+        nomArtiste.textContent="Aucun artiste trouvé pour ce genre";
         return;
     }
 
     const artisteDataGlobal = await getInfoArtiste(artiste);
     if (!artisteDataGlobal || !artisteDataGlobal.artists || artisteDataGlobal.artists.items.length === 0) {
         console.error("Aucune donnée récupérée pour l'artiste :", artiste);
+        titreMusique.textContent="Oopsi une erreur est arrivée";
+        nomArtiste.textContent="Aucune donnée récupérée pour cette artiste";
         return;
     }
 
