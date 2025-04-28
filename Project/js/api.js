@@ -1,179 +1,168 @@
-let spotifyToken = null;
-let tokenExpiration = null;
-
-const album = document.getElementById("album");
-const nomArtiste = document.getElementById("nom_artiste");
-const titreMusique = document.getElementById("Titre_M");
-
-
-const genres = {
-    Tous: ["Linkin Park", "Queen", "Nirvana", "Sum 41", "AC/DC", 
-             "Damso", "PNL", "PLK", "Travis Scott", "Kendrick Lamar", 
-             "Bruno Mars", "Taio Cruz", "Katy Perry", "The Weeknd", "Magic System", 
-             "Daft Punk", "DJ Snake", "David Guetta", "Skrillex", "Calvin Harris", 
-             "Miles Davis", "John Coltrane", "Duke Ellington", "Ella Fitzgerald", "Louis Armstrong", 
-             "BTS", "BLACKPINK", "EXO", "TWICE", "Stray Kids", 
-             "Johnny Cash", "Dolly Parton", "Luke Bryan", "Carrie Underwood", "Blake Shelton", 
-             "Aretha Franklin", "Marvin Gaye", "Otis Redding", "Etta James", "Al Green", 
-             "B.B. King", "Muddy Waters", "Robert Johnson", "Howlin' Wolf", "John Lee Hooker"],
-    rock: ["Linkin Park", "Queen", "Nirvana", "Sum 41", "AC/DC"],
-    hiphop: ["Damso", "PNL", "PLK", "Travis Scott", "Kendrick Lamar"],
-    pop: ["Bruno Mars", "Taio Cruz", "Katy Perry", "The Weeknd", "Magic System"],
-    electronic: ["Daft Punk", "DJ Snake", "David Guetta", "Skrillex", "Calvin Harris"],
-    jazz: ["Miles Davis", "John Coltrane", "Duke Ellington", "Ella Fitzgerald", "Louis Armstrong"],
-    kpop: ["BTS", "BLACKPINK", "EXO", "TWICE", "Stray Kids"],
-    country: ["Johnny Cash", "Dolly Parton", "Luke Bryan", "Carrie Underwood", "Blake Shelton"],
-    soul: ["Aretha Franklin", "Marvin Gaye", "Otis Redding", "Etta James", "Al Green"],
-    blues: ["B.B. King", "Muddy Waters", "Robert Johnson", "Howlin' Wolf", "John Lee Hooker"],
-    classique: ["Mozart", "Beethoven", "Chopin", "Bach", "Vivaldi"], 
-    world: ["Angélique Kidjo", "Youssou N'Dour", "Fela Kuti", "Caifanes", "Manu Dibango"],
-    alternative: ["Radiohead", "The Strokes", "Arcade Fire", "The White Stripes", "Nirvana"]
+// Éléments DOM
+const elements = {
+    album: document.getElementById("album"),
+    nomArtiste: document.getElementById("nom_artiste"),
+    titreMusique: document.getElementById("Titre_M"),
+    buttons: document.querySelectorAll('.filter-button'),
+    spotifyLink: document.getElementById("spotify-link")
 };
 
+// Vérification des éléments DOM
+if (!elements.album || !elements.nomArtiste) {
+    console.error("Éléments manquants dans le DOM");
+    throw new Error("Elements manquants");
+}
 
+// Configuration
+const config = {
+    spotify: {
+        clientId: "5b11546928184232b3491c7186e026a7",
+        clientSecret: "f53f6b1914df428c8c4a62a4c8d0c493"
+    },
+    localAPI: "http://localhost:3001"
+};
 
+// État global
+const state = {
+    token: null,
+    tokenExpiration: null,
+    currentTrack: null
+};
 
-// Récupérer Token valable
+// Récupère le token Spotify
 async function getSpotifyToken() {
-    const CLIENT_ID = "5b11546928184232b3491c7186e026a7";
-    const CLIENT_SECRET = "f53f6b1914df428c8c4a62a4c8d0c493";
-
-    if (spotifyToken && tokenExpiration && Date.now() < tokenExpiration) {
-        console.log("Token encore valide, pas besoin de le renouveler.");
-        return spotifyToken;
+    if (state.token && Date.now() < state.tokenExpiration) {
+        return state.token;
     }
-
-    console.log("Récupération d’un nouveau token...");
-    const url = "https://accounts.spotify.com/api/token";
-    const headers = {
-        "Authorization": "Basic " + btoa(`${CLIENT_ID}:${CLIENT_SECRET}`),
-        "Content-Type": "application/x-www-form-urlencoded"
-    };
-    const body = new URLSearchParams({ grant_type: "client_credentials" });
 
     try {
-        const response = await fetch(url, { method: "POST", headers, body });
+        const auth = btoa(`${config.spotify.clientId}:${config.spotify.clientSecret}`);
+        const response = await fetch("https://accounts.spotify.com/api/token", {
+            method: "POST",
+            headers: {
+                "Authorization": `Basic ${auth}`,
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            body: new URLSearchParams({ grant_type: "client_credentials" })
+        });
+
         const data = await response.json();
-        if (!data.access_token) throw new Error("Réponse invalide : Aucun token reçu");
-        spotifyToken = data.access_token;
-        tokenExpiration = Date.now() + data.expires_in * 1000; // expires_in est en secondes
-        return spotifyToken;
+        state.token = data.access_token;
+        state.tokenExpiration = Date.now() + data.expires_in * 1000;
+        return state.token;
     } catch (error) {
-        console.error("Erreur lors de la récupération du token:", error.message);
-        return null;
+        console.error("Erreur Spotify Token:", error);
+        throw error;
     }
 }
 
-// Fonction pour obtenir un artiste aléatoire par genre
-function getRandomArtist(genre) {
-    const artists = genres[genre];
-    if (!artists) return "Genre inconnu";
-    const random = Math.floor(Math.random() * artists.length);
-    return artists[random];
-}
-
-// Récupérer les infos de l'artiste via l'API Spotify
-async function getInfoArtiste(artiste) {
-    const token = await getSpotifyToken();
-    if (!token) return;
-
-    const url = `https://api.spotify.com/v1/search?q=${encodeURIComponent(artiste)}&type=artist&limit=1`;
-
+// Charge et affiche un artiste
+async function loadArtist(genre) {
     try {
-        const response = await fetch(url, { method: "GET", headers: { "Authorization": `Bearer ${token}` } });
-        const data = await response.json();
-        return data;
+        // Reset UI
+        elements.album.style.display = 'none';
+        elements.nomArtiste.textContent = "Chargement...";
+        elements.titreMusique.textContent = "";
+
+        const genreConversion = {
+            'Hip-Hop': 'hiphop',
+            'Électronique': 'electronic'
+        };
+
+        // 1. Récupérer un artiste depuis notre API
+        const dbGenre = genreConversion[genre] || genre;
+
+        const apiUrl = `${config.localAPI}/api/random-artist/${encodeURIComponent(dbGenre)}`;
+        const apiResponse = await fetch(apiUrl);
+
+
+        if (!apiResponse.ok) {
+            const errorData = await apiResponse.json().catch(() => ({}));
+            throw new Error(errorData.error || `Erreur ${apiResponse.status}`);
+        }
+        const artist = await apiResponse.json();
+
+        if (!artist?.name) {
+            throw new Error("Données d'artiste invalides");
+        }
+
+        // 2. Récupérer les infos Spotify
+        const token = await getSpotifyToken();
+        const [artistData, topTracks] = await Promise.all([
+            fetch(`https://api.spotify.com/v1/search?q=${encodeURIComponent(artist.name)}&type=artist&limit=1`, {
+                headers: { "Authorization": `Bearer ${token}` }
+            }),
+            fetch(`https://api.spotify.com/v1/search?q=${encodeURIComponent(artist.name)}&type=track&limit=5`, {
+                headers: { "Authorization": `Bearer ${token}` }
+            })
+        ]);
+
+        const [artistJson, tracksJson] = await Promise.all([
+            artistData.json(),
+            topTracks.json()
+        ]);
+
+        const spotifyArtist = artistJson?.artists?.items[0];
+        const tracks = tracksJson?.tracks?.items;
+
+        if (!spotifyArtist || !tracks?.length) {
+            throw new Error("Données Spotify non disponibles");
+        }
+
+        // Sélection de la première piste (ou une aléatoire si vous préférez)
+        const selectedTrack = tracks[0];
+
+        // 3. Mettre à jour l'UI
+        elements.album.src = spotifyArtist.images[0]?.url || '';
+        elements.album.style.display = 'block';
+        elements.album.style.cursor = 'pointer';
+        elements.nomArtiste.textContent = spotifyArtist.name;
+        elements.titreMusique.textContent = tracks[0].name;
+        state.currentTrack = tracks[0].id;
+
+
+        // Lien profond Spotify (ouvre l'app si installée)
+        const spotifyUri = `https://open.spotify.com/track/${selectedTrack.id}`;
+        state.currentTrack = {
+            id: selectedTrack.id,
+            url: spotifyUri };
+
+        // Gestion du clic
+        elements.album.onclick = (e) => {
+            e.preventDefault();
+            window.open(spotifyUri, '_blank', 'noopener,noreferrer');
+        };
+
+
+
     } catch (error) {
-        console.error("Erreur lors de la récupération de l'artiste:", error.message);
-        nomArtiste.textContent="Oopsi une erreur est arrivée";
-        titreMusique.textContent="Erreur lors de récupération de l'artiste";
+        console.error("Erreur détaillée:", {
+            message: error.message,
+            stack: error.stack
+        });
+        elements.nomArtiste.textContent = "Erreur de chargement";
+        elements.titreMusique.textContent = error.message.includes("404")
+            ? "Genre non trouvé dans la base"
+            : error.message;
     }
 }
 
-// Récupérer une musique aléatoire de l'artiste
-async function getRandomMusic(artistId) {
-    const token = await getSpotifyToken();
-    if (!token) return null;
-
-    const url = `https://api.spotify.com/v1/artists/${artistId}/top-tracks?market=FR`;
-
-    try {
-        const response = await fetch(url, { method: "GET", headers: { "Authorization": `Bearer ${token}` } });
-        const data = await response.json();
-        const randomIndex = Math.floor(Math.random() * data.tracks.length);
-        return data.tracks[randomIndex];
-    } catch (error) {
-        console.error("Erreur lors de la récupération des musiques:", error.message);
-        nomArtiste.textContent="Oopsi une erreur est arrivée";
-        titreMusique.textContent="Erreur lors de récupération de la musique";
-        return null;
-    }
-}
-
-
-// Choisir un genre aléatoire au chargement de la page
-window.addEventListener('DOMContentLoaded', () => {
-    const genreKeys = Object.keys(genres);
-    const randomIndex = Math.floor(Math.random() * genreKeys.length);
-    const randomGenre = genreKeys[randomIndex];
-    afficherArtisteParGenre(randomGenre);
-});
-
-// Événements au clic sur les boutons de genre
-document.querySelectorAll('.swiper-slide').forEach(slide => {
-    slide.addEventListener('click', () => {
-        const genre = slide.getAttribute('data-genre');
-        afficherArtisteParGenre(genre);
+// Initialisation
+function init() {
+    // Événements des boutons
+    elements.buttons.forEach(button => {
+        button.addEventListener('click', () => {
+            loadArtist(button.textContent.trim());
+        });
     });
-});
 
-// Fonction pour rediriger vers la page Spotify du morceau
-function redirectToSpotify(trackId) {
-    if (trackId) {
-        const url = `https://open.spotify.com/track/${trackId}`;
-        window.open(url, '_blank'); // ouvre dans un nouvel onglet
-    }
+    // Premier chargement
+    loadArtist('rock');
 }
 
-let currentTrackId = null; // Pour stocker l'ID du morceau courant
-
-// Mettre à jour la fonction afficherArtisteParGenre pour récupérer l'ID du morceau
-async function afficherArtisteParGenre(genre) {
-    const artiste = getRandomArtist(genre);
-    if (!artiste) {
-        console.error("Aucun artiste trouvé pour le genre :", genre);
-        titreMusique.textContent="Oopsi une erreur est arrivée";
-        nomArtiste.textContent="Aucun artiste trouvé pour ce genre";
-        return;
-    }
-
-    const artisteDataGlobal = await getInfoArtiste(artiste);
-    if (!artisteDataGlobal || !artisteDataGlobal.artists || artisteDataGlobal.artists.items.length === 0) {
-        console.error("Aucune donnée récupérée pour l'artiste :", artiste);
-        titreMusique.textContent="Oopsi une erreur est arrivée";
-        nomArtiste.textContent="Aucune donnée récupérée pour cette artiste";
-        return;
-    }
-
-    const artisteData = artisteDataGlobal.artists.items[0];
-    if (artisteData.images && artisteData.images.length > 0) {
-        album.src = artisteData.images[0].url;
-    }
-    nomArtiste.textContent = artisteData.name;
-
-    const track = await getRandomMusic(artisteData.id);
-    if (track) {
-        titreMusique.textContent = `${track.name}`;
-        currentTrackId = track.id; // Stocke l'ID pour redirection
-    } else {
-        titreMusique.textContent = "Pas de musique trouvée";
-        currentTrackId = null;
-    }
+// Démarrer l'application
+if (document.readyState === 'complete') {
+    init();
+} else {
+    document.addEventListener('DOMContentLoaded', init);
 }
-
-// Ajouter un événement au clic sur la carte pour rediriger vers Spotify
-[album, nomArtiste, titreMusique].forEach(el => {
-    el.addEventListener('click', () => {
-        redirectToSpotify(currentTrackId);
-    });
-});

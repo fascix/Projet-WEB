@@ -25,6 +25,7 @@ nav a:hover {
 }
 
 .image-container {
+    position: relative;
     width: 300px;
     height: 300px;
     border-radius: 15px;
@@ -39,6 +40,8 @@ nav a:hover {
     max-height: 300px;
     border-radius: 15px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 #nom_artiste, #Titre_M {
@@ -48,4 +51,38 @@ nav a:hover {
     background: white;
     padding: 5px 10px;
     font-size: 125%;
+}
+
+#album:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 15px rgba(29, 185, 84, 0.3); /* Couleur Spotify */
+}
+
+.image-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 30%;
+    background: linear-gradient(transparent, rgba(0,0,0,0.7));
+    border-radius: 0 0 8px 8px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.image-container:hover::after {
+    opacity: 1;
+}
+
+.image-container:hover::before {
+    content: "▶ Écouter sur Spotify";
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    color: white;
+    text-align: center;
+    font-size: 0.9em;
+    z-index: 2;
 }
