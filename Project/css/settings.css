@@ -47,13 +47,6 @@ background: green;
 background: darkgreen;
 }
 
-.modal-button.deezer {
-background: purple;
-}
-
-.modal-button.deezer:hover {
-background: darkviolet;
-}
 
 .closeModalButton {
     position: absolute;

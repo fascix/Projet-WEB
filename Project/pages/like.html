@@ -14,15 +14,14 @@
 </head>
 <body>
     <header>
-        <button id="settingsButton">
-            <img id="settingsIcon" src="../images/settings.png" alt="Paramètres">
-        </button>
         <div class="Logo-Titre-container">
             <img id="Logo" src="../images/Logo.png">
             <h1 class="Titre">Titres Likes :</h1>
         </div>
         
-
+        <button id="settingsButton">
+            <img id="settingsIcon" src="../images/settings.png" alt="Paramètres">
+        </button>
         <nav>
             <button id="menu-toggle" aria-label="Toggle navigation">☰ Menu</button>
             <div id="nav-links" class="nav-links">
@@ -76,12 +75,11 @@
 
     <!-- Fenêtre modale -->
     <div id="modal" class="modal">
+        <button id="closeModalButton" class="closeModalButton">×</button>
         <div class="modal-header">Paramètres</div>
         <div class="modal-buttons">
             <button class="modal-button spotify">Connecter Spotify</button>
-            <button class="modal-button deezer">Connecter Deezer</button>
         </div>
-        <button id="closeModalButton" class="modal-button">Fermer</button>
     </div>
 
     <script src="../js/script.js"></script>
